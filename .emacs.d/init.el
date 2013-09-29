@@ -1,4 +1,5 @@
 (add-to-list 'load-path (concat user-emacs-directory "/lisp"))
+(add-to-list 'custom-theme-load-path (concat user-emacs-directory "/themes"))
 
 (require 'exec-path-from-shell)
 (when (memq window-system '(mac ns))
@@ -69,9 +70,11 @@
       (set-frame-font "DejaVu Sans Mono-11")))
 (if (eq window-system 'ns)
     (progn
-      (set-frame-font "Menlo-14")
+      (set-frame-font "Menlo-13")
       (add-to-list 'default-frame-alist '(height . 50))
       (add-to-list 'default-frame-alist '(width . 160))))
+
+(load-theme 'zenburn t)
 
 (setq delete-by-moving-to-trash t)
 (if (eq window-system 'ns)
@@ -105,8 +108,8 @@
 
 (require 'revbufs)
 
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
+;(require 'magit)
+;(global-set-key (kbd "C-x g") 'magit-status)
 
 (defun snippet-include (name)
   (interactive "sEnter name of sentinel macro: ")
