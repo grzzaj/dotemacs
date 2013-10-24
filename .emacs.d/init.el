@@ -1,9 +1,15 @@
-(add-to-list 'load-path (concat user-emacs-directory "/lisp"))
-(add-to-list 'custom-theme-load-path (concat user-emacs-directory "/themes"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
-(require 'exec-path-from-shell)
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(if (and (eq system-type 'windows-nt)
+         (require 'cygwin-mount nil t))
+    (progn
+      (setenv "PATH" (concat "c:/cygwin/bin;" (getenv "PATH")))
+      (setq exec-path (cons "c:/cygwin/bin/" exec-path))
+      (require 'setup-cygwin)))
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
@@ -60,21 +66,22 @@
 
 (defun toggle-fullscreen ()
   (interactive)
-  (when (eq window-system 'x)
-    (set-frame-parameter
-     nil 'fullscreen
-     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
+  (cond ((eq window-system 'x)
+         (set-frame-parameter
+          nil 'fullscreen
+          (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
+  (cond ((eq window-system 'w32)
+         (shell-command "emacs_fullscreen.exe"))))
 
 (if (eq window-system 'x)
     (progn
       (set-frame-font "DejaVu Sans Mono-11")))
 (if (eq window-system 'ns)
     (progn
-      (set-frame-font "Menlo-13")
-      (add-to-list 'default-frame-alist '(height . 50))
-      (add-to-list 'default-frame-alist '(width . 160))))
-
-(load-theme 'zenburn t)
+      (set-frame-font "Menlo-13")))
+(if (eq window-system 'w32)
+    (progn
+      (set-frame-font "DejaVu Sans Mono-10")))
 
 (setq delete-by-moving-to-trash t)
 (if (eq window-system 'ns)
@@ -95,22 +102,44 @@
 (global-set-key (kbd "S-s-<down>") 'shrink-window)
 (global-set-key (kbd "C-l") 'goto-line)
 (global-set-key (kbd "C-k") 'kill-whole-line)
-(global-set-key (kbd "s-s") 'tags-search)
 (global-set-key (kbd "<M-f9>") 'compile)
 (global-set-key (kbd "<f9>") 'recompile)
 (global-set-key (kbd "M-]") 'next-error)
 (global-set-key (kbd "M-[") 'previous-error)
-(global-set-key (kbd "<f11>") 'toggle-fullscreen)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(require 'xcscope)
-(global-set-key (kbd "C-c s a") 'cscope-set-initial-directory)
-
 (require 'revbufs)
-
-;(require 'magit)
-;(global-set-key (kbd "C-x g") 'magit-status)
 
 (defun snippet-include (name)
   (interactive "sEnter name of sentinel macro: ")
   (insert (format "#ifndef %s\n#define %s\n\n#endif\n" name name)))
+
+(defun hide-ctrl-m ()
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
+(eval-after-load "exec-path-from-shell-autoloads"
+  '(progn
+     (exec-path-from-shell-initialize)))
+
+(eval-after-load "ggtags-autoloads"
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode)
+                (ggtags-mode 1)))))
+
+(eval-after-load "magit-autoloads"
+  '(progn
+     (global-set-key (kbd "C-x g") 'magit-status)))
+
+(eval-after-load "ecb-autoloads"
+  '(progn
+     (custom-set-variables '(ecb-options-version "2.40"))
+     (setq ecb-version-check nil)
+     (setq ecb-tip-of-the-day nil)
+     (setq ecb-layout-name "left13")
+     (setq ecb-show-sources-in-directories-buffer 'always)
+     (setq ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
+     (setq ecb-tree-buffer-style 'ascii-guides)
+     (setq ecb-vc-enable-support nil)))
