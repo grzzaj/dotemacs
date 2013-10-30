@@ -53,15 +53,16 @@
 (setq ediff-window-setup-function (quote ediff-setup-windows-plain))
 (setq ediff-split-window-function (quote split-window-horizontally))
 
-(defun compilation-hook()
-  (when (not (get-buffer-window "*compilation*"))
-    (save-selected-window
-      (save-excursion
-        (let* ((w (split-window-vertically))
-               (h (window-height w)))
-          (select-window w)
-          (switch-to-buffer "*compilation*"))))))
-(add-hook 'compilation-mode-hook 'compilation-hook)
+
+;;(defun compilation-hook()
+;;  (when (not (get-buffer-window "*compilation*"))
+;;    (save-selected-window
+;;      (save-excursion
+;;        (let* ((w (split-window-vertically))
+;;               (h (window-height w)))
+;;          (select-window w)
+;;          (switch-to-buffer "*compilation*"))))))
+;;(add-hook 'compilation-mode-hook 'compilation-hook)
 (setq compilation-scroll-output t)
 
 (defun toggle-fullscreen ()
@@ -72,6 +73,14 @@
           (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
   (cond ((eq window-system 'w32)
          (shell-command "emacs_fullscreen.exe"))))
+
+(if (eq window-system 'x)
+    (progn
+      (global-set-key (kbd "<f11>") 'toggle-fullscreen)))
+(if (eq window-system 'w32)
+    (progn
+      (global-set-key (kbd "<M-return>") 'toggle-fullscreen)))
+
 
 (if (eq window-system 'x)
     (progn
