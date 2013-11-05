@@ -149,3 +149,7 @@
 (eval-after-load "cygwin-mount-autoloads"
   '(progn
      (require 'setup-cygwin)))
+
+(if (file-readable-p (concat user-emacs-directory "local.el"))
+    (load-file (concat user-emacs-directory "local.el"))
+  nil)
