@@ -4,13 +4,6 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(if (and (eq system-type 'windows-nt)
-         (require 'cygwin-mount nil t))
-    (progn
-      (setenv "PATH" (concat "c:/cygwin/bin;" (getenv "PATH")))
-      (setq exec-path (cons "c:/cygwin/bin/" exec-path))
-      (require 'setup-cygwin)))
-
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
 (setq default-major-mode 'text-mode)
@@ -52,7 +45,6 @@
 
 (setq ediff-window-setup-function (quote ediff-setup-windows-plain))
 (setq ediff-split-window-function (quote split-window-horizontally))
-
 
 ;;(defun compilation-hook()
 ;;  (when (not (get-buffer-window "*compilation*"))
@@ -116,6 +108,7 @@
 (global-set-key (kbd "M-]") 'next-error)
 (global-set-key (kbd "M-[") 'previous-error)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-`") 'dired)
 
 (require 'revbufs)
 
@@ -152,3 +145,7 @@
      (setq ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
      (setq ecb-tree-buffer-style 'ascii-guides)
      (setq ecb-vc-enable-support nil)))
+
+(eval-after-load "cygwin-mount-autoloads"
+  '(progn
+     (require 'setup-cygwin)))
