@@ -150,6 +150,5 @@
   '(progn
      (require 'setup-cygwin)))
 
-(if (file-readable-p (concat user-emacs-directory "local.el"))
-    (load-file (concat user-emacs-directory "local.el"))
-  nil)
+(defconst local-el (concat user-emacs-directory "local.el"))
+(if (file-readable-p local-el) (load-file local-el) nil)
