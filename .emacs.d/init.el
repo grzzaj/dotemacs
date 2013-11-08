@@ -52,15 +52,6 @@
 (setq ediff-window-setup-function (quote ediff-setup-windows-plain))
 (setq ediff-split-window-function (quote split-window-horizontally))
 
-;;(defun compilation-hook()
-;;  (when (not (get-buffer-window "*compilation*"))
-;;    (save-selected-window
-;;      (save-excursion
-;;        (let* ((w (split-window-vertically))
-;;               (h (window-height w)))
-;;          (select-window w)
-;;          (switch-to-buffer "*compilation*"))))))
-;;(add-hook 'compilation-mode-hook 'compilation-hook)
 (setq compilation-scroll-output t)
 
 (defun toggle-fullscreen ()
@@ -111,6 +102,8 @@
 (global-set-key (kbd "C-k") 'kill-whole-line)
 (global-set-key (kbd "<M-f9>") 'compile)
 (global-set-key (kbd "<f9>") 'recompile)
+(global-set-key (kbd "M-n") 'next-error)
+(global-set-key (kbd "M-p") 'previous-error)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (require 'revbufs)
