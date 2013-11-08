@@ -134,31 +134,6 @@
   '(progn
      (global-set-key (kbd "C-x g") 'magit-status)))
 
-(eval-after-load "ecb-autoloads"
-  '(progn
-     (custom-set-variables '(ecb-options-version "2.40"))
-     (setq ecb-version-check nil)
-     (setq ecb-tip-of-the-day nil)
-     (setq ecb-layout-name "left13")
-     (setq ecb-show-sources-in-directories-buffer 'always)
-     (setq ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
-     (setq ecb-tree-buffer-style 'ascii-guides)
-     (setq ecb-vc-enable-support nil)
-
-     (defvar ecb-on-and-off-state nil)
-
-     (defun ecb-on-and-off ()
-       (interactive)
-       (if (not ecb-on-and-off-state)
-           (progn
-             (setq ecb-on-and-off-state t)
-             (ecb-activate))
-         (progn
-           (setq ecb-on-and-off-state nil)
-           (ecb-deactivate))))
-
-     (global-set-key (kbd "M-`") 'ecb-on-and-off)))
-
 (eval-after-load "cygwin-mount-autoloads"
   '(progn
      (require 'setup-cygwin)))
