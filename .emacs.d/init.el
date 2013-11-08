@@ -111,8 +111,6 @@
 (global-set-key (kbd "C-k") 'kill-whole-line)
 (global-set-key (kbd "<M-f9>") 'compile)
 (global-set-key (kbd "<f9>") 'recompile)
-(global-set-key (kbd "M-]") 'next-error)
-(global-set-key (kbd "M-[") 'previous-error)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (require 'revbufs)
