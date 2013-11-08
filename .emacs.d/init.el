@@ -1,3 +1,9 @@
+(defun open-user-init-file ()
+  (interactive)
+  (find-file user-init-file))
+
+(global-set-key (kbd "<C-M-return>") 'open-user-init-file)
+
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
