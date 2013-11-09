@@ -135,5 +135,7 @@
   '(progn
      (require 'setup-cygwin)))
 
+(setq default-directory "~/")
+
 (defconst local-el (concat user-emacs-directory "local.el"))
 (if (file-readable-p local-el) (load-file local-el) nil)
