@@ -135,6 +135,10 @@
   '(progn
      (require 'setup-cygwin)))
 
+(eval-after-load "yasnippet-autoloads"
+  '(progn
+     (yas-global-mode 1)))
+
 (setq default-directory "~/")
 
 (defconst local-el (concat user-emacs-directory "local.el"))
