@@ -137,6 +137,7 @@
 
 (eval-after-load "yasnippet-autoloads"
   '(progn
+     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
      (yas-global-mode 1)))
 
 (setq default-directory "~/")
