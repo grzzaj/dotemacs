@@ -1,0 +1,6 @@
+# key: try
+# name: try { ... }
+# --
+try {
+$0
+}
