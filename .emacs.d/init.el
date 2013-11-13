@@ -10,6 +10,9 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
+(setq user-full-name "Jacek Migacz")
+(setq user-mail-address "jacekmigacz@gmail.com")
+
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
 (setq default-major-mode 'text-mode)
