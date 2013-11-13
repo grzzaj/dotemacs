@@ -35,6 +35,8 @@
 
 (setq nxml-child-indent 4)
 
+(setq hexl-bits 8)
+
 (delete-selection-mode 1)
 (setq mouse-yank-at-point t)
 (setq mouse-wheel-scroll-amount '(1 ((shift))))
