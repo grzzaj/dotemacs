@@ -119,6 +119,9 @@
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
+(setq w32-pass-lwindow-to-system nil w32-lwindow-modifier 'super)
+(setq w32-pass-rwindow-to-system nil w32-lwindow-modifier 'super)
+
 (eval-after-load "exec-path-from-shell-autoloads"
   '(progn
      (exec-path-from-shell-initialize)))
