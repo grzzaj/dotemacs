@@ -142,6 +142,7 @@
 
 (eval-after-load "yasnippet-autoloads"
   '(progn
+     (setq yas-verbosity 2)
      (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
      (yas-global-mode 1)))
 
