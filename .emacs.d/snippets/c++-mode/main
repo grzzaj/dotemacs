@@ -1,0 +1,7 @@
+# key: main
+# name: main (int argc, char *argv[]) { ... }
+# --
+main(int argc, char* argv[])
+{
+$0
+}
