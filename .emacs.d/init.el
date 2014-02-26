@@ -110,10 +110,6 @@
 
 (require 'revbufs)
 
-(defun snippet-include (name)
-  (interactive "sEnter name of sentinel macro: ")
-  (insert (format "#ifndef %s\n#define %s\n\n#endif\n" name name)))
-
 (defun hide-ctrl-m ()
   (interactive)
   (setq buffer-display-table (make-display-table))
@@ -126,25 +122,9 @@
   '(progn
      (exec-path-from-shell-initialize)))
 
-(eval-after-load "ggtags-autoloads"
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (when (derived-mode-p 'c-mode 'c++-mode)
-                (ggtags-mode 1)))))
-
-(eval-after-load "magit-autoloads"
-  '(progn
-     (global-set-key (kbd "C-x g") 'magit-status)))
-
 (eval-after-load "cygwin-mount-autoloads"
   '(progn
      (require 'setup-cygwin)))
-
-(eval-after-load "yasnippet-autoloads"
-  '(progn
-     (setq yas-verbosity 2)
-     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-     (yas-global-mode 1)))
 
 (setq default-directory "~/")
 
