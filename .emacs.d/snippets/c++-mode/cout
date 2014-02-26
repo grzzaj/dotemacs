@@ -1,4 +1,0 @@
-# key: cout
-# name: std::cout << ... << std::endl;
-# --
-std::cout << ${1:message} << std::endl;

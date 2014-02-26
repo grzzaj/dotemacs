@@ -1,4 +1,0 @@
-# key: case
-# name : case ...: ...
-# --
-case ${1:enumeration}: $0
