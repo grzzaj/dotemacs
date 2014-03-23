@@ -75,7 +75,7 @@
 
 (if (eq window-system 'x)
     (progn
-      (set-frame-font "DejaVu Sans Mono-11")))
+      (set-frame-font "DejaVu Sans Mono-10")))
 (if (eq window-system 'ns)
     (progn
       (set-frame-font "Menlo-13")))
