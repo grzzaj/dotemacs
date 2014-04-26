@@ -42,7 +42,6 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift))))
 
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
 (unless (eq window-system 'ns)
   (menu-bar-mode -1))
 (tooltip-mode -1)
@@ -81,7 +80,7 @@
       (set-frame-font "Menlo-13")))
 (if (eq window-system 'w32)
     (progn
-      (set-frame-font "DejaVu Sans Mono-10")))
+      (set-frame-font "Consolas-10")))
 
 (setq delete-by-moving-to-trash t)
 (if (eq window-system 'ns)
