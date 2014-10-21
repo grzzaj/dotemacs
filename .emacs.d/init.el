@@ -105,7 +105,7 @@
 (global-set-key (kbd "<f9>") 'recompile)
 (global-set-key (kbd "M-n") 'next-error)
 (global-set-key (kbd "M-p") 'previous-error)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-B") 'ibuffer)
 
 (require 'revbufs)
 
